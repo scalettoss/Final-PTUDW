@@ -1,0 +1,87 @@
+﻿@model MyClass.Model.Users
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+<main class="main">
+    <div class="container login-container d-flex justify-content-center">
+        <div class="row" style="width: 600px">
+            <div class="col-lg-10 mx-auto">
+                <div class="row">
+                    <div class="col-md-12 bg-white">
+                        <div class="heading mb-1">
+                            <h2 class="title text-center">Đăng nhập</h2>
+                        </div>
+                        @using (Html.BeginForm("Login", "Auth", FormMethod.Post))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Username)
+                                @Html.TextBoxFor(model => model.Username, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Password)
+                                @Html.PasswordFor(model => model.Password, new { @class = "form-control", @type = "password" })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="lost-password" />
+                                    <label class="custom-control-label mb-0" for="lost-password">
+                                        Lưu mật khẩu
+                                    </label>
+                                </div>
+                                <div>
+                                    <a href="#" class="font-weight-bold text-dark">Quên mật khẩu</a>
+                                </div>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-dark btn-md w-100">
+                                    Đăng nhập
+                                </button>
+                            </div>
+                            <p class="text-danger text-center mt-2">@TempData["login"]</p>
+                            <div class="mt-2">
+                                <a href="@Url.Action("Register","Auth")">Chưa có tài khoản? Đăng kí</a>
+                            </div>
+                            @*<label for="login-email">
+                                    Tài Khoản
+                                    <span class="required">*</span>
+                                </label>
+                                <input type="text" class="form-input form-wide" name="usernamel" required />
+                                <label for="login-password">
+                                    Mật khẩu
+                                    <span class="required">*</span>
+                                </label>
+                                <input type="password" class="form-input form-wide" name="pass" required />
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="lost-password" />
+                                        <label class="custom-control-label mb-0" for="lost-password">
+                                            Lưu mật khẩu
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <a href="#" class="font-weight-bold text-dark">Quên mật khẩu</a>
+                                    </div>
+                                </div>
+                                <div>
+                                    <button type="submit" class="btn btn-dark btn-md w-100">
+                                        Đăng nhập
+                                    </button>
+                                </div>
+                                <p class="text-danger text-center mt-2">@ViewBag.mess</p>
+                                <div class="mt-2">
+                                    <a href="@Url.Action("Register","Site")">Chưa có tài khoản? Đăng kí</a>
+                                </div>*@
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+

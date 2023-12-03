@@ -1,0 +1,65 @@
+﻿@model MyClass.Model.Users
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layoutadmin.cshtml";
+}
+
+<div class="wrapper">
+    <!-- Main Sidebar Container -->
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <strong class="text-danger">Danh mục người dùng </strong>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <a href="@Url.Action("Index","User")" class="btn-sm btn-info"><i class="fa fa-long-arrow-alt-left"></i> Quay lại</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    @Html.Partial("Message")
+                    <table id="myTable" class="display table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Id</th>
+                                <th>@Html.DisplayNameFor(model => model.Email)</th>
+                                <th>@Html.DisplayNameFor(model => model.Username)</th>
+                                <th>@Html.DisplayNameFor(model => model.Password)</th>
+                                <th>@Html.DisplayNameFor(model => model.Role)</th>
+                                <th>Trạng thái</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox" name="id" value=" " /></td>
+                                <td>@Html.DisplayFor(modelItem => modelItem.Id)</td>
+                                <td>@Html.DisplayFor(modelItem => modelItem.Email)</td>
+                                <td>@Html.DisplayFor(modelItem => modelItem.Username)</td>
+                                <td>@Html.DisplayFor(modelItem => modelItem.Password)</td>
+                                <td>@Html.DisplayFor(modelItem => modelItem.Role)</td>
+                                <td>
+                                    @if (Model.Status == 1)
+                                    {
+                                        <p>Hoạt động</p>
+                                    }
+                                    else
+                                    {<p>Không hoạt động</p>}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div> <!-- /.card-footer-->
+            </div><!-- /.card -->
+        </section><!-- /.content -->
+    </div> <!-- /.content-wrapper -->
+</div>

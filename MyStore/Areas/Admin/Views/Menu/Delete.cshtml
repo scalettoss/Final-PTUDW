@@ -1,0 +1,75 @@
+﻿﻿@model MyClass.Model.Menus
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="wrapper">
+        <!-- Main Sidebar Container -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Main content -->
+            <section class="content">
+
+                <!-- Default box -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <strong class="text-danger">Danh mục nhà cung cấp</strong>
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <a href="@Url.Action("Index", "Menu")" class="btn-sm btn-info"><i class="fa fa-long-arrow-alt-left"></i> Quay lại</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        @Html.Partial("Message")
+                        <table id="myTable" class="display table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Id</th>
+                                    <th>@Html.DisplayNameFor(model => model.Name)</th>
+                                    <th>@Html.DisplayNameFor(model => model.Link)</th>
+                                    <th>@Html.DisplayNameFor(model => model.TypeMenu)</th>
+                                    <th>@Html.DisplayNameFor(model => model.Order)</th>
+                                    <th>@Html.DisplayNameFor(model => model.Status)</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input type="checkbox" name="id" value=" " /></td>
+                                    <td>@Html.DisplayFor(modelItem => modelItem.Id)</td>
+                                    <td>@Html.DisplayFor(modelItem => modelItem.Name)</td>
+                                    <td>@Html.DisplayFor(modelItem => modelItem.Link)</td>
+                                    <td>@Html.DisplayFor(modelItem => modelItem.TypeMenu)</td>
+                                    <td>@Html.DisplayFor(modelItem => modelItem.Order)</td>
+                                    <td>
+                                        @if (Model.Status == 1)
+                                        {
+                                            <p>Hoạt động</p>
+                                        }
+                                        else
+                                        {<p>Không hoạt động</p>}
+                                    </td>
+                                    <td>
+                                        <div class="form-actions no-color">
+                                            <button class="btn-sm btn-danger" type="submit" name="Delete">Xóa [Del] <i class="fa fa-trash"></i></button>
+                                        </div>
+                                    </td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div> <!-- /.card-footer-->
+                </div><!-- /.card -->
+            </section><!-- /.content -->
+        </div> <!-- /.content-wrapper -->
+    </div>
+}

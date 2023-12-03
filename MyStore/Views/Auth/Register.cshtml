@@ -1,0 +1,62 @@
+﻿@model MyClass.Model.Users
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+
+<main class="main">
+
+    <div class="container login-container">
+        <div class="row">
+            <div class="col-md-12 d-flex justify-content-center align-items-center">
+
+                @using (Html.BeginForm("Register", "Auth", FormMethod.Post, new { enctype = "multipart/form-data", @style = "width: 599px" }))
+                {
+                    <div class="text-center">
+                        <h2>ĐĂNG KÍ</h2>
+                    </div>
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Username) <span class="text-danger">*</span>
+                                @Html.TextBoxFor(model => model.Username, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Password) <span class="text-danger">*</span>
+                                @Html.PasswordFor(model => model.Password, new { @class = "form-control", @type = "password" })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Email) <span class="text-danger">*</span>
+                                @Html.PasswordFor(model => model.Email, new { @class = "form-control", @type = "email" })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group d-flex">
+                                <label class="d-inline-block">Avatar<span class="text-danger"></span></label>
+                                <div class="col-md-10">
+                                    <input type="file" name="img" class="" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-dark btn-md w-100">
+                            Đăng kí
+                        </button>
+                    </div>
+                    <p class="text-danger text-center mt-2">@ViewBag.Res @TempData["mes"]</p>
+
+                    <div class="mt-2">
+                        <a href="@Url.Action("Login","Auth")">Đã có tài khoản? Đăng nhập</a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</main>
